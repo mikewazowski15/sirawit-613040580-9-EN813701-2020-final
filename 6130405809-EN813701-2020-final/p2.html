@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>New York Times Popular News</h1>
+
+<ol id="list"></ol>
+
+</body>
+
+<script>
+    var url = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=yourkey';
+    var list = document.getElementById("list");
+
+    fetch(url).then(response => {
+      return response.json();
+  }).then(data => {
+      
+      for (let item of data.results) {
+          let listItem = document.createElement('li');
+          listItem.innerHTML = ` ${item.url}   has skill  <i>${item.media[1]}</i>`;
+          list.appendChild(listItem);
+      }
+  })
+        
+  </script>
+
+</html>
